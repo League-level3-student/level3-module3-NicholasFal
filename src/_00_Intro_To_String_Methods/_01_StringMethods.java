@@ -1,5 +1,6 @@
 package _00_Intro_To_String_Methods;
 
+import java.util.ArrayList;
 import java.util.Base64;
 
 /*
@@ -34,13 +35,30 @@ public class _01_StringMethods {
 
     // Given Strings s1 and s2, return the longer String
     public static String longerString(String s1, String s2) {
-        return null;
+        if(s1.length() > s2.length()) {
+        	return s1;
+        } else if(s2.length() > s1.length()) {
+        	return s2;
+        } else {
+    	return "equal";
+        }
     }
 
     // If String s contains the word "underscores", change all of the spaces
     // to underscores
     public static String formatSpaces(String s) {
-        return null;
+        String substring = "underscores";
+        boolean occurrence = false;
+        int index = s.indexOf("underscores");
+        while(index != -1) {
+        	index = s.indexOf(substring, index + substring.length());
+        	occurrence = true;
+        }
+        String replaceds = s;
+        if(occurrence) {
+        	replaceds = s.replace(' ', '_');
+        }
+    	return replaceds;
     }
 
     // Return the name of the person whose LAST name would appear first if they
@@ -48,12 +66,37 @@ public class _01_StringMethods {
     // You cannot assume there are no extra spaces around the name, but you can
     // assume there is only one space between the first and last name
     public static String lineLeader(String s1, String s2, String s3) {
+        s1.trim(); s2.trim(); s3.trim();
+        String s1last = s1.substring(s1.length() - 1);
+        String s2last = s2.substring(s2.length() - 1);
+        String s3last = s3.substring(s3.length() - 1);
+        String tarStrr = "";
+        System.out.println(s1last + "" + s2last + "" + s3last);
+        if(s1last.compareTo(s2last) < 0 && s1last.compareTo(s3last) < 0) {
+        	System.out.println(s1last.compareTo(s2last) < 0 && s1last.compareTo(s3last) < 0);	 
+        	return s1;
+        } 
+        if(s2last.compareTo(s1last) < 0 && s2last.compareTo(s3last) < 0) {
+        	System.out.println(s2last.compareTo(s1last) < 0 && s2last.compareTo(s3last) < 0);	 
+        	return s2;
+        	}
+         if(s3last.compareTo(s2last) < 0 && s3last.compareTo(s1last) < 0) {
+        	System.out.println(s3last.compareTo(s2last) < 0 && s3last.compareTo(s1last) < 0);	
+        	System.out.println("test");
+        	return s3;
+        }
         return null;
     }
 
     // Return the sum of all numerical digits in the String
     public static int numeralSum(String s) {
-        return 0;
+        for(int i = 0; i < s.length(); i++) {
+        	ArrayList<Integer> ints = new ArrayList<Integer>();
+        	if(Character.isDigit(i)) {
+        		ints.add(Integer.parseInt(s.substring(i)));
+        	}
+        }
+    	return 0;
     }
 
     // Return the number of times String substring appears in String s

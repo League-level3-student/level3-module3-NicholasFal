@@ -66,7 +66,7 @@ public class _01_StringMethods {
     // You cannot assume there are no extra spaces around the name, but you can
     // assume there is only one space between the first and last name
     public static String lineLeader(String s1, String s2, String s3) {
-        s1.trim(); s2.trim(); s3.trim();
+        s1 = s1.trim(); s2 = s2.trim(); s3 = s3.trim();
         String s1last = s1.substring(s1.length() - 1);
         String s2last = s2.substring(s2.length() - 1);
         String s3last = s3.substring(s3.length() - 1);
@@ -90,12 +90,13 @@ public class _01_StringMethods {
 
     // Return the sum of all numerical digits in the String
     public static int numeralSum(String s) {
+    	int numsum = 0;
     	for(int i = 0; i < s.length(); i++) {
-        	if(!Character.isDigit(s.charAt(i))) {
-        		
+        	if(Character.isDigit(s.charAt(i))) {
+        		numsum += Character.getNumericValue(s.charAt(i));
         	}
         }
-    	return 0;
+    	return numsum;
     }
 
     // Return the number of times String substring appears in String s
@@ -143,24 +144,27 @@ public class _01_StringMethods {
     public static int distance(String s, String substring) {
         int numOccur = 0;
         int index2 = s.indexOf(substring);
-        while(index2 != -1) {
-        	numOccur++;
-        	index2 = s.indexOf(substring, index2 + substring.length());
-        }
-    	numOccur+=2;
-        int index = s.indexOf(substring);
-    	System.out.println(numOccur);
-        int index3 = s.indexOf(substring, index+numOccur);
-        System.out.println(index);
-        System.out.println(index3);
-    	return index3 - index;
+        int index3 = s.lastIndexOf(substring);
+        int length = substring.length() - 1;
+        index2 += length;
+    	return index3 - index2 - 1;
     }
 
     // Return true if String s is a palindrome
     // palindromes are words or phrases are read the same forward as backward.
     // HINT: ignore/remove all punctuation and spaces in the String
     public static boolean palindrome(String s) {
-        return true;
+        String s3 = s.replace(" ", "").replace("?", "").replace(".", "").replace("-", "").replace(",", "").replace(":", "");
+      
+        String s2 = "";
+        for(int i = s3.length() - 1; i >= 0; i--) {
+        	s2 += s3.charAt(i);
+        }
+        if(s3.equalsIgnoreCase(s2)) {
+        	return true;
+        } else {
+        	return false;
+        }
     }
 }
 

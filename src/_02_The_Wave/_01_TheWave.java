@@ -23,11 +23,11 @@ public class _01_TheWave {
        ArrayList<String> strings = new ArrayList<String>();
     	for(int i = 0; i < str.length(); i++) {
     	   String Str2 = str;
-    		if(Str2.substring(i, i+1) != (" ")) {
+    		if(Str2.substring(i, i+1).equalsIgnoreCase(" ")) {
+    		   continue;
+    	   } else {
     		   Str2 = Str2.substring(0, i) + Str2.substring(i, i+1).toUpperCase() + Str2.substring(i+1, str.length());
     		   strings.add(Str2);
-    	   } else {
-    		   continue;
     	   }
        }
     	System.out.println(strings);
